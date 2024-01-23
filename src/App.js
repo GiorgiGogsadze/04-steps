@@ -21,7 +21,7 @@ function Steps() {
   return (
     <div className="steps">
       <Numbers step={step} />
-      <Message step={step} />
+      <StepMessage step={step}>{messages[step - 1]}</StepMessage>
       <Buttons setStep={setStep} />
     </div>
   );
@@ -51,11 +51,12 @@ function Step({ i, active }) {
   return <div className={`step-${i} ${active ? "active" : ""}`}>{i}</div>;
 }
 
-function Message({ step }) {
+function StepMessage({ step, children }) {
   return (
-    <p className="message">
-      Step {step}: {messages[step - 1]}
-    </p>
+    <div className="message">
+      <h3>Step {step}:</h3>
+      {children}
+    </div>
   );
 }
 
@@ -71,12 +72,28 @@ function Buttons({ setStep }) {
   };
   return (
     <div className="buttons">
-      <button className="previous" onClick={handlePrevious}>
+      <Button textColor="#fff" bgColor="#7950f2" onClick={handlePrevious}>
+        <span>👈</span>
         Previous
-      </button>
-      <button className="next" onClick={handleNext}>
+      </Button>
+      <Button textColor="#fff" bgColor="#7950f2" onClick={handleNext}>
         Next
-      </button>
+        <span>👉</span>
+      </Button>
     </div>
+  );
+}
+
+function Button({ textColor, bgColor, onClick, children }) {
+  return (
+    <button
+      style={{
+        color: textColor,
+        background: bgColor,
+      }}
+      onClick={onClick}
+    >
+      {children}
+    </button>
   );
 }

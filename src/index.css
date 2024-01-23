@@ -70,12 +70,6 @@ body {
   line-height: 1;
 }
 
-.previous,
-.next {
-  background-color: #7950f2;
-  color: #fff;
-}
-
 h3 {
   margin: 0;
   text-transform: uppercase;
